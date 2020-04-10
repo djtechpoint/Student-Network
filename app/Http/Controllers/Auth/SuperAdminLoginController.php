@@ -5,17 +5,19 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
-use App\Admin;
+use App\SuperAdmin;
 
-class AdminLoginController extends Controller
+class SuperAdminLoginController extends Controller
 {
+    //
+
     //
       //
       public function __construct(){
-        $this->middleware('guest:admin')->except('logout');
+        $this->middleware('guest:superadmin')->except('logout');
     }
     public function showloginForm(){
-        return view('auth.admin-login');
+        return view('auth.superadmin-login');
     }
 
     public function login(Request $request){
@@ -25,16 +27,16 @@ class AdminLoginController extends Controller
             'password'=>'required|min:6'
         ]);
         //attempt to login
-        if(Auth::guard('admin')->attempt(['email'=>$request->email,'password'=>$request->password],$request->remember)){
+        if(Auth::guard('superadmin')->attempt(['email'=>$request->email,'password'=>$request->password],$request->remember)){
             //if successsful , then redirect
-            return redirect()->intended(route('admin.dashboard'));
+            return redirect()->intended(route('superadmin.dashboard'));
         }
         return redirect()->back()->withinput($request->only('email','remember'));
 
 
     }
     public function logout(){
-        Auth::guard('admin')->logout();
+        Auth::guard('superadmin')->logout();
         return redirect('/');
     }
 }

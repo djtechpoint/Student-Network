@@ -55,6 +55,15 @@ return [
             'provider' => 'admins',
             'hash' => false,
         ],
+        'superadmin' => [
+            'driver' => 'session',
+            'provider' => 'super_admins',
+        ],
+        'superadmin-api' => [
+            'driver' => 'token',
+            'provider' => 'super_admins',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -82,6 +91,10 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
+        ],
+        'super_admins' => [
+            'driver' => 'eloquent',
+            'model' => App\SuperAdmin::class,
         ],
 
 
@@ -115,6 +128,12 @@ return [
         ],
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 15,
+            'throttle' => 60,
+        ],
+        'superadmins' => [
+            'provider' => 'super_admins',
             'table' => 'password_resets',
             'expire' => 15,
             'throttle' => 60,
