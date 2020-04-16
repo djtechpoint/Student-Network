@@ -46,6 +46,24 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'admin-api' => [
+            'driver' => 'token',
+            'provider' => 'admins',
+            'hash' => false,
+        ],
+        'superadmin' => [
+            'driver' => 'session',
+            'provider' => 'super_admins',
+        ],
+        'superadmin-api' => [
+            'driver' => 'token',
+            'provider' => 'super_admins',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -70,6 +88,15 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
+        ],
+        'super_admins' => [
+            'driver' => 'eloquent',
+            'model' => App\SuperAdmin::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',
@@ -97,6 +124,18 @@ return [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
+            'throttle' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 15,
+            'throttle' => 60,
+        ],
+        'superadmins' => [
+            'provider' => 'super_admins',
+            'table' => 'password_resets',
+            'expire' => 15,
             'throttle' => 60,
         ],
     ],
