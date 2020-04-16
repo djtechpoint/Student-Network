@@ -40,10 +40,10 @@ Route::get('users/logout','Auth\LoginController@userLogout')->name('user.logout'
         Route::get('/', 'SuperAdminController@index')->name('superadmin.dashboard');
         Route::get('/logout','Auth\SuperAdminLoginController@logout')->name('superadmin.logout');
     // Password reset Route
-    Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('superadmin.password.email');
-    Route::get('/password/reset', 'Auth\AdminForgotPasswordController@showLinkRequestForm')->name('superadmin.password.request');
-    Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset');
-    Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('superadmin.password.reset');
+    Route::post('/password/email', 'Auth\SuperAdminForgotPasswordController@sendResetLinkEmail')->name('superadmin.password.email');
+    Route::get('/password/reset', 'Auth\SuperAdminForgotPasswordController@showLinkRequestForm')->name('superadmin.password.request');
+    Route::post('/password/reset', 'Auth\SuperAdminResetPasswordController@reset');
+    Route::get('/password/reset/{token}', 'Auth\SuperAdminResetPasswordController@showResetForm')->name('superadmin.password.reset');
 
     });
 
